@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.mapper.RiskAssetsMapper">
+
+    <sql id="time_sql">
+        <where>
+            <if test="reqVo.startTime !=null">
+                and LatestExceptionTime &gt;=#{reqVo.startTime}
+            </if>
+            <if test="reqVo.endTime !=null">
+                and LatestExceptionTime &lt;=#{reqVo.endTime}
+            </if>
+        </where>
+    </sql>
+
+    <!-- 选择安全域 top5 -->
+    <select id="getSecurityDomainNum" resultType="com.lt.entity.vo.asset.RiskAssetVo6">
+        select SecurityDomain as name,RiskRating as riskRating from riskassetsreport
+        <include refid="time_sql"></include>
+    </select>
+
+    <select id="getRiskRatingNum" resultType="com.lt.entity.vo.asset.RiskAssetVo5">
+        select count(*) value, RiskRating name FROM riskassetsreport
+        <include refid="time_sql"></include>
+        GROUP BY name  order by value;
+    </select>
+
+    <select id="getLatestExceptionTime" resultType="com.lt.entity.vo.asset.RiskAssetVo4">
+      select AssetName,SecurityDomain,RiskRating,LatestExceptionTime from riskassetsreport
+        <include refid="time_sql"></include>
+       ORDER BY LatestExceptionTime DESC limit 10
+    </select>
+</mapper>

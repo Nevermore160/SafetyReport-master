@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.mapper.AttackerTopMapper">
+
+    <sql id="time_sql">
+        <if test="reqVo.startTime !=null">
+            and startTime &gt;=#{reqVo.startTime}
+        </if>
+        <if test="reqVo.endTime !=null">
+            and startTime &lt;=#{reqVo.endTime}
+        </if>
+    </sql>
+
+    <select id="selectTopByKillChain" resultType="com.lt.entity.vo.top.TopVo2">
+        select count(*) data ,killChain titleName from attackertopn
+        where threatSeverity in('Medium','High')
+        <include refid="time_sql"></include>
+        GROUP BY killChain
+        ORDER BY data DESC limit 0,5;
+    </select>
+
+    <select id="selectTopBySubCategory" resultType="com.lt.entity.vo.top.TopVo2">
+        select count(*) data ,subCategory titleName from attackertopn
+        where threatSeverity in('Medium','High')
+        <include refid="time_sql"></include>
+        GROUP BY subCategory
+        ORDER BY data DESC limit 0,5;
+    </select>
+
+    <select id="selectTopByModelType" resultType="com.lt.entity.vo.top.TopVo2">
+        select count(*) data ,modelType titleName from attackertopn
+		where threatSeverity in('Medium','High')
+        <include refid="time_sql"></include>
+        GROUP BY modelType
+		ORDER BY data DESC limit 0,5;
+    </select>
+
+
+    <select id="selectTopByDeviceAST" resultType="com.lt.entity.vo.top.TopVo2">
+        select count(*) data ,deviceAssetSubType titleName from attackertopn
+        where threatSeverity in('Medium','High')
+        <include refid="time_sql"></include>
+        GROUP BY deviceAssetSubType
+        ORDER BY data DESC limit 0,5;
+    </select>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.mapper.DisposalSuggestionMapper">
+
+    <sql id="time_sql">
+        <if test="reqVo.startTime !=null">
+            and startTime &gt;=#{reqVo.startTime}
+        </if>
+        <if test="reqVo.endTime !=null">
+            and startTime &lt;=#{reqVo.endTime}
+        </if>
+    </sql>
+
+    <select id="selectSuggestion" resultType="com.lt.entity.vo.suggestions.SuggestionVo1">
+        SELECT subCategory,  suggestion from disposalsuggestions,(
+        select subCategory as topsub from attackertopn
+        where threatSeverity in('Medium','High')
+        <include refid="time_sql"></include>
+        GROUP BY subCategory
+        ORDER BY count(*) DESC limit 0,3) a
+        where subCategory = a.topsub;
+    </select>
+</mapper>

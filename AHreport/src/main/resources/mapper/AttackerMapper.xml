@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.mapper.AttackerMapper">
+
+    <sql id="attacker_sql">
+        where srcGeoCountry is not null
+        and srcGeoCountry != 'apnic.net'
+        and srcGeoCountry != 'google.com'
+        and srcGeoCountry != '保留地址'
+        and srcGeoCountry != '局域网'
+        and srcGeoCountry != '本机地址'
+    </sql>
+
+    <sql id="time_sql">
+        <if test="reqVo.startTime !=null">
+            and startTime &gt;=#{reqVo.startTime}
+        </if>
+        <if test="reqVo.endTime !=null">
+            and startTime &lt;=#{reqVo.endTime}
+        </if>
+    </sql>
+
+    <select id="selectCountrySumSeverity"
+            resultType="com.lt.entity.vo.attacker.AttackerVo1">
+        select srcGeoCountry, count(*) sum, threatSeverity from attackeranalysis
+        <include refid="attacker_sql"></include>
+        <include refid="time_sql"></include>
+        group by srcGeoCountry, threatSeverity
+        order by srcGeoCountry,threatSeverity
+    </select>
+
+    <select id="selectCountryKillChain"  resultType="com.lt.entity.vo.attacker.AttackerVo2">
+        select srcGeoCountry,killchain,count(*) sum from attackeranalysis
+        <include refid="attacker_sql"></include>
+        <include refid="time_sql"></include>
+        group by srcGeoCountry,killchain
+        order by srcGeoCountry ASC,sum DESC,killchain ASC
+    </select>
+
+    <select id="selectCountryKillChainSum"  resultType="com.lt.entity.vo.attacker.AttackerVo3">
+        select srcGeoCountry,count(*) sum from attackeranalysis
+        <include refid="attacker_sql"></include>
+        <include refid="time_sql"></include>
+        group by srcGeoCountry
+        order by sum DESC LIMIT 0,5
+    </select>
+
+    <select id="selectLatestCountry"  resultType="com.lt.entity.vo.attacker.AttackerVo4">
+        select DISTINCT srcGeoCountry ,killChain,threatSeverity, starttime from attackeranalysis
+        <include refid="attacker_sql"></include>
+        <include refid="time_sql"></include>
+        ORDER BY starttime DESC limit 0,5
+    </select>
+</mapper>

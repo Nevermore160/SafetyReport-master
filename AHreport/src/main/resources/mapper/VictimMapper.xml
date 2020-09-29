@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.mapper.VictimMapper">
+
+    <sql id="victim_sql">
+        where destGeoCountry is not null
+        and destGeoCountry != 'apnic.net'
+        and destGeoCountry != 'google.com'
+        and destGeoCountry != '保留地址'
+        and destGeoCountry != '局域网'
+        and destGeoCountry != '本机地址'
+    </sql>
+
+    <sql id="time_sql">
+        <if test="reqVo.startTime !=null">
+            and startTime &gt;=#{reqVo.startTime}
+        </if>
+        <if test="reqVo.endTime !=null">
+            and startTime &lt;=#{reqVo.endTime}
+        </if>
+    </sql>
+
+    <select id="selectCountryHeat" resultType="com.lt.entity.vo.victim.VictimVo1">
+        select destGeoCountry, count(*) sum, threatSeverity from victim
+        <include refid="victim_sql"></include>
+        <include refid="time_sql"></include>
+        group by destGeoCountry, threatSeverity
+        order by destGeoCountry,threatSeverity
+    </select>
+
+
+    <select id="selectCountryCategory" resultType="com.lt.entity.vo.victim.VictimVo2">
+        select destGeoCountry,subCategory,count(*) sum from victim
+        <include refid="victim_sql"></include>
+        <include refid="time_sql"></include>
+        group by destGeoCountry,subCategory
+        order by destGeoCountry ASC,sum DESC,subCategory ASC
+    </select>
+
+
+    <select id="selectCountryCategorySum" resultType="com.lt.entity.vo.victim.VictimVo5">
+        select destGeoCountry,count(*) sum from victim
+        <include refid="victim_sql"></include>
+        <include refid="time_sql"></include>
+        group by destGeoCountry
+        order by sum DESC LIMIT 0,5
+    </select>
+
+    <select id="selectLatestCountry" resultType="com.lt.entity.vo.victim.VictimVo3">
+        select DISTINCT destGeoCountry ,subCategory,threatSeverity, starttime from victim
+        <include refid="victim_sql"></include>
+        <include refid="time_sql"></include>
+        ORDER BY starttime DESC limit 0,5
+    </select>
+</mapper>

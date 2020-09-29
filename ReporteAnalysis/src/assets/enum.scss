@@ -1,0 +1,41 @@
+$colors:(
+    "primary":#052657,
+    "info":#2db7f5,
+    "white":#fff,
+    "light":#2EE7FF,
+    "light-1":#86FED8,
+    "light-2":#8ac2f8c4,
+    "light-3":rgb(0, 217, 255),
+    "shadow":#ade1e75e,
+    "bg-color":#0f3c6e9e,
+    "bd-color":#2257c2,
+    "card-color":#2259878c,
+    "sg-color":#0e1066,
+);
+$border-color:map-get($map: $colors, $key: 'light');
+$base-font-size:1rem;
+$font-sizes:(
+    xxs:0.6154,     //8
+    xs:0.7692, //10
+    sm:0.9231,  //12
+    md:1,  //13
+    lg:1.076,  //14
+    xl:1.2308,  //16
+);
+$flex-jc:(
+    start:flex-start,
+    end:flex-end,
+    center:center,
+    between:space-between,
+    around:space-around,
+ );
+ $spacing-types:(m:margin,p:padding);
+ $spacing-directions:(t:top,r:right,b:bottom,l:left);
+ $spacing-base-size:1rem;
+ $spacing-sizes:(0:0,1:0.25,2:0.5,3:1,4:1.5,5:3);
+ $flex-ai:(
+    start:flex-start,
+    end:flex-end,
+    center:center,
+    stretch:stretch,
+ );

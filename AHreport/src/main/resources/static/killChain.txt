@@ -1,0 +1,1 @@
+"侦查":"KC_Reconnaissance","投递":"KC_Delivery","利用":"KC_Exploitation","命令控制":"KC_CommandControl","内部侦查":"KC_InternalRecon","横向渗透":"KC_LateralMov","获利":"KC_Profit","无":"KC_Others"

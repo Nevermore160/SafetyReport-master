@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.mapper.DistributionTrendMapper">
+
+    <sql id="time_sql">
+        <where>
+            <if test="reqVo.startTime !=null">
+                and startTime &gt;=#{reqVo.startTime}
+            </if>
+            <if test="reqVo.endTime !=null">
+                and startTime &lt;=#{reqVo.endTime}
+            </if>
+        </where>
+    </sql>
+
+    <select id="selectAllByThreatSeverity" resultType="com.lt.entity.vo.dt.DTVo">
+        select count(*) countTime,t.startTime from
+        (select threatSeverity, DATE_FORMAT(startTime,"%Y-%m-%d %H:%i:00") AS startTime
+        from distributiontrend
+        <include refid="time_sql"></include>
+        ) t
+        where t.threatSeverity =#{severity} GROUP BY t.startTime ORDER BY t.startTime ASC;
+    </select>
+
+    <select id="selectAllTimeNode" resultType="java.lang.String">
+        select DISTINCT DATE_FORMAT(startTime,"%Y-%m-%d %H:%i:00") AS startTime from distributiontrend
+        <include refid="time_sql"></include>
+        ORDER BY startTime ASC;
+    </select>
+</mapper>

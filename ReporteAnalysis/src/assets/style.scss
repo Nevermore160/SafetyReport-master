@@ -1,0 +1,470 @@
+@import './enum.scss';
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+;
+
+html {
+    font-size: 1rem;
+    height: 100%;
+}
+
+;
+
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+//主页样式
+.collapsed-menu span {
+    width: 0px;
+    transition: width 0.2s ease;
+}
+
+.collapsed-menu i {
+    transform: translateX(.384615rem);
+    transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
+    vertical-align: middle;
+    font-size: 1.692308rem;
+}
+
+.pheader {
+    height: 5.6rem;
+    border-radius: .307692rem;
+    color: map-get($colors, 'light');
+    width: 100%;
+    font-size: 2.4rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    line-height: 5.6rem;
+    text-align: center;
+    animation: color 3s ease 1s infinite forwards
+}
+
+.layout-con {
+    height: 100%;
+    width: 100%;
+}
+
+.ivu-card {
+    display: block;
+    background: #0f3c6e9e;
+    border-radius: 0.307692rem;
+    font-size: 1.076923rem;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.ivu-card-bordered {
+    border: 1px solid #2257c2;
+    border-color: #8ac2f8c4;
+    margin-top: 1.2rem;
+}
+
+.menu-item span {
+    display: inline-block;
+    overflow: hidden;
+    width: 5.307692rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+    transition: width 0.2s ease 0.2s;
+}
+
+.menu-item i {
+    transform: translateX(0px);
+    transition: font-size 0.2s ease, transform 0.2s ease;
+    vertical-align: middle;
+    font-size: 1.230769rem;
+}
+
+.ivu-layout {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+
+}
+
+.ivu-layout-content {
+    flex: auto;
+    background-size: 100% 100%;
+    height: 58.5rem
+}
+
+.line {
+    border: 0;
+    background-color: map-get($map: $colors, $key: 'bd-color');
+    ;
+    height: 1px;
+}
+
+ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):hover,
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu),
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu):hover {
+    background: #455a89;
+}
+
+.ivu-menu-dark {
+    background: #455a89;
+}
+
+.ivu-time-picker-with-range .ivu-time-picker-cells-list:last-child {
+    border-radius: 0;
+    display: none;
+}
+
+.ivu-time-picker-cells-list {
+    width: 6.461538rem;
+    max-height: 11.076923rem;
+    float: left;
+    overflow: hidden;
+    border-left: 1px solid #e8eaec;
+    position: relative;
+}
+
+.ivu-time-picker-cells-cell {
+    color: #4676e0;
+}
+
+#app>div>div.ivu-layout-sider>div.ivu-layout-sider-children>ul>a:visited {
+    background: #06276e;
+}
+
+.ivu-layout-sider {
+    transition: all .2s ease-in-out;
+    position: relative;
+    background: #455a89;
+}
+
+.ivu-layout-sider-trigger {
+    bottom: 0;
+    text-align: center;
+    cursor: pointer;
+    height: 3.692308rem;
+    line-height: 3.692308rem;
+    color: #fff;
+    background: #455a89;
+    z-index: 1000;
+    transition: all .2s ease-in-out;
+}
+
+.test {
+    background-image: url(./images/bg1.png);
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes color {
+    0% {
+        color: map-get($map: $colors, $key: 'light')
+    }
+
+    30% {
+        color: map-get($map: $colors, $key: 'light-1')
+    }
+
+    60% {
+        color: map-get($map: $colors, $key: 'light-2')
+    }
+
+    100% {
+        color: map-get($map: $colors, $key: 'light-3')
+    }
+}
+
+
+.dateTitle {
+    font-size: 1.2rem;
+    color: map-get($map: $colors, $key: 'info');
+}
+
+.chart-title {
+    color: map-get($map: $colors, $key: 'info');
+    padding: .92rem 1.3rem;
+}
+
+.content-title {
+    color: map-get($map: $colors, $key: 'info');
+    position: relative;
+    top: -3%;
+    font-size:0.5rem;
+    padding: 0rem 1.3rem;
+
+}
+
+#chartmap {
+    top: -1.4rem;
+}
+
+.leftBox {
+    height: 98%;
+    border-radius: 1.07rem;
+}
+
+.mainBox {
+    width: 100%;
+    height: 100%;
+    border-radius: 1.07rem;
+}
+
+.rightBox {
+    width: 100%;
+    height: 100%;
+    border-radius: 1.07rem;
+}
+
+.btnSuggest {
+    width: 100%;
+    height: 10%;
+    border-radius: 1.07rem;
+
+    &.h3 {
+        padding-left: 32%;
+    }
+}
+
+.timeBox {
+    width: 92%;
+    margin: 0 4.3%;
+    height: 97%;
+    border-radius: 1.07rem;
+}
+
+.changeBtn {
+    width: 100%;
+    height: 5%;
+    position: relative;
+    top: -2%;
+    left: 40%;
+}
+
+.changeBtn:hover {
+    color: rgb(27, 106, 252);
+}
+
+.sgBox {
+    margin: auto;
+    width: 60%;
+    height: 88%;
+    position: fixed;
+    top: 4%;
+    left: 21%;
+    clear: both;
+    border-radius: 1.2rem;
+    background: #1e2a3c;
+    box-shadow: 3rem 5rem 20rem #111416;
+    z-index: 9999999999;
+
+    p {
+        font-size: 13.2px;
+        padding: 0.2rem 0 1rem 2%;
+        color: map-get($map: $colors, $key:'info');
+    }
+
+    button {
+        position: fixed;
+        bottom: 9.5%;
+        left: 47%;
+    }
+}
+
+.sg-Dialog {
+    width: 100%;
+    height: 100%;
+}
+
+.panel {
+    position: relative;
+    height: 97%;
+    background-color: #2259878c;
+    padding: 0 0.1875rem 0.5rem;
+    margin-bottom: 0.1875rem;
+    border-radius: 0.8rem;
+    border: 0.1rem solid #33b5dc8c;
+    box-shadow: 0rem 0rem 0.8rem #357597 inset;
+}
+
+.panel:after {
+    position: absolute;
+    top: -2px;
+    right: -1px;
+    width: 1rem;
+    height: 1rem;
+    border-right: 3px solid #2db7f5;
+    border-top: 2px solid #2db7f5;
+    content: "";
+    border-top-right-radius: 0.56rem;
+}
+
+.panel:before {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 1rem;
+    height: 1rem;
+    border-left: 2px solid #2db7f5;
+    border-top: 2px solid #2db7f5;
+    border-top-left-radius: 0.56rem;
+    content: "";
+}
+
+.panel-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+}
+
+.panel-footer:before {
+    position: absolute;
+    left: -1px;
+    bottom: -1px;
+    width: 1rem;
+    height: 1rem;
+    border-left: 2px solid #2db7f5;
+    border-bottom: 2px solid #2db7f5;
+    border-bottom-left-radius: 0.56rem;
+    content: "";
+}
+
+.panel-footer:after {
+    position: absolute;
+    bottom: -2px;
+    right: -1px;
+    width: 1rem;
+    height: 1rem;
+    border-right: 2px solid #2db7f5;
+    border-bottom: 2px solid #2db7f5;
+    border-bottom-right-radius: 0.56rem;
+    content: "";
+}
+
+.ivu-date-picker-cells-header span {
+    line-height: 24px;
+    text-align: center;
+    margin: 2px;
+    color: #a1d3f7;
+}
+
+.ivu-date-picker-header-label {
+    cursor: pointer;
+    transition: color .2s ease-in-out;
+    color: #a1d3f7;
+}
+
+.ivu-date-picker-cells span em {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    margin: 2px;
+    font-style: normal;
+    border-radius: 3px;
+    text-align: center;
+    transition: all .2s ease-in-out;
+    color: #8ed4f5f7;
+    ;
+}
+
+.ivu-btn-primary {
+    color: #6cbfe5;
+    background-color: #113782;
+    border-color: #0b4561;
+}
+
+.ivu-btn-small {
+    height: 24px;
+    padding: 0 7px;
+    font-size: 14px;
+    border-radius: 3px;
+    color: #113782;
+
+    span {
+        color: #39aee4;
+    }
+}
+
+btn-text.active,
+fieldset[disabled] .ivu-btn-text:active,
+fieldset[disabled] .ivu-btn-text:focus,
+fieldset[disabled] .ivu-btn-text:hover {
+    color: #113782;
+    background-color: #fff;
+    border-color: transparent;
+}
+
+.ivu-picker-confirm {
+    border-top: 1px solid #e8eaec;
+    text-align: right;
+    padding: 8px;
+    clear: both;
+    background: #0b324e;
+}
+
+.ivu-date-picker-with-range .ivu-picker-panel-content {
+    float: left;
+    background: #0b324e;
+}
+
+.ivu-icon-ios-close:before {
+    content: "\f178";
+    background: #001521;
+}
+
+.ivu-icon-ios-calendar-outline:before {
+    content: "\f15b";
+    color: #2DB7F5;
+}
+
+.ivu-input-suffix {
+    left: auto;
+    right: 0;
+    border: 1px solid #2DB7F5;
+    border-radius: 3px;
+}
+
+.ivu-input {
+    background: #001b2c;
+    border: 1px solid #2DB7F5;
+}
+
+.ivu-date-picker-cells-cell-range:before {
+    content: "";
+    display: block;
+    background: #2c5f8e;
+    border-radius: 0;
+    border: 0;
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+}
+
+.ivu-time-picker-cells-cell-selected,
+.ivu-time-picker-cells-cell-selected:hover {
+    color: #95c9ff;
+    background: #124c76d1;
+}
+
+body>div.test>div.container>div.tools>div.ivu-color-picker>div.ivu-select-dropdown.ivu-transfer-no-max-height>div>div.ivu-color-picker-confirm>button.ivu-btn.ivu-btn-primary.ivu-btn-small>span {
+    color: white;
+}
+
+.ivu-picker-panel-content .ivu-picker-panel-content .ivu-time-picker-cells-with-seconds .ivu-time-picker-cells-list {
+    width: 108px;
+}
+
+.ivu-time-picker-header {
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #a1d3f7;
+    border-bottom: 1px solid #e8eaec;
+}
